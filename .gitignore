@@ -34,6 +34,7 @@ backend/**/obj
 backend/**/published
 *.user
 *.vs/
+backend/GorillacAPI/appsettings.Secrets.json
 
 # OS/system
 .DS_Store
