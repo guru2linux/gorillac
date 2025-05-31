@@ -1,0 +1,40 @@
+# Nuxt dev/build outputs
+frontend/.output
+frontend/.nuxt
+frontend/.data
+frontend/.nitro
+frontend/.cache
+frontend/dist
+
+# Node dependencies
+**/node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# VS Code settings
+.vscode/
+
+# Ignore workspace file
+/Gorillac.net.code-workspace
+
+# .NET (backend)
+backend/**/bin
+backend/**/obj
+backend/**/published
+*.user
+*.vs/
+
+# OS/system
+.DS_Store
+Thumbs.db
