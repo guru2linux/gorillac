@@ -1,6 +1,3 @@
 @GorillacAPI_HostAddress = http://localhost:5011
 
-GET {{GorillacAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
 ###

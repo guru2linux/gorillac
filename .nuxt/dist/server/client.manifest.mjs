@@ -1,0 +1,1 @@
+export { default } from "file:///L:/Code/Gorillac.net/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
