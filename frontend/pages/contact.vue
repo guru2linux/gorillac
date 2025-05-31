@@ -1,11 +1,11 @@
 <template>
-  <div class="max-w-xl mx-auto p-4">
-    <h1 class="text-2xl font-bold mb-4">Contact Me</h1>
+  <div class="max-w-xl mx-auto p-4 bg-brand-cream rounded-lg shadow">
+    <h1 class="text-2xl font-bold mb-4 text-brand-dark">Contact Me</h1>
     <form @submit.prevent="submitForm" class="space-y-4">
-      <input v-model="form.name" type="text" placeholder="Your Name" required class="w-full p-2 border rounded" />
-      <input v-model="form.email" type="email" placeholder="Your Email" required class="w-full p-2 border rounded" />
-      <textarea v-model="form.message" placeholder="Your Message" required class="w-full p-2 border rounded"></textarea>
-      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+      <input v-model="form.name" type="text" placeholder="Your Name" required class="w-full p-2 border rounded border-brand-gold text-brand-dark bg-white" />
+      <input v-model="form.email" type="email" placeholder="Your Email" required class="w-full p-2 border rounded border-brand-gold text-brand-dark bg-white" />
+      <textarea v-model="form.message" placeholder="Your Message" required class="w-full p-2 border rounded border-brand-gold text-brand-dark bg-white"></textarea>
+      <button type="submit" class="bg-brand-gold text-brand-dark px-4 py-2 rounded hover:brightness-90">
         Send
       </button>
       <p v-if="response" class="text-green-600 mt-2">{{ response }}</p>
@@ -15,9 +15,11 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { useRuntimeConfig } from '#app'
 
 const config = useRuntimeConfig()
+const router = useRouter()
 const form = reactive({ name: '', email: '', message: '' })
 const response = ref(null)
 
@@ -34,6 +36,10 @@ async function submitForm() {
     })
     response.value = data.message || 'Message sent!'
     form.name = form.email = form.message = ''
+    // Show confirmation, then redirect to home after a short delay
+    setTimeout(() => {
+      router.push('/')
+    }, 1500)
   } catch {
     response.value = 'Error sending message'
   }

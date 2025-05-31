@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
+  <div class="min-h-screen bg-brand-cream text-brand-text">
     <NavBar />
     <div class="p-4">
       <NuxtPage />
@@ -12,3 +12,9 @@
 import NavBar from '~/components/NavBar.vue'
 import Footer from '~/components/Footer.vue'
 </script>
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+</style>

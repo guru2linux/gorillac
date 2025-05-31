@@ -1,5 +1,5 @@
 <template>
-  <footer class="p-4 text-center text-sm text-gray-500 border-t mt-8">
+  <footer class="p-4 text-center text-sm text-brand-dark border-t border-brand-gold mt-8 bg-brand-cream">
     © {{ new Date().getFullYear() }} Gorillac.net. All rights reserved.
   </footer>
 </template>
