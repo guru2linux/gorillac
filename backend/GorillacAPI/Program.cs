@@ -83,4 +83,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
+// Listen on all interfaces for port 5000
+app.Urls.Add("http://0.0.0.0:5000");
+
 app.Run();
