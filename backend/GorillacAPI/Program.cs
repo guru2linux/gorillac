@@ -3,8 +3,12 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load .env file if present (for all environments)
+Env.Load();
 
 // Only load secrets from appsettings.Secrets.json in Development
 if (builder.Environment.IsDevelopment())
