@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-xl mx-auto p-4 bg-brand-cream rounded-lg shadow">
-    <h1 class="text-2xl font-bold mb-4 text-brand-dark">Contact Me</h1>
+    <h1 class="text-2xl font-bold mb-4 text-brand-dark">Contact Us</h1>
     <form @submit.prevent="submitForm" class="space-y-4">
       <input v-model="form.name" type="text" placeholder="Your Name" required class="w-full p-2 border rounded border-brand-gold text-brand-dark bg-white" />
       <input v-model="form.email" type="email" placeholder="Your Email" required class="w-full p-2 border rounded border-brand-gold text-brand-dark bg-white" />

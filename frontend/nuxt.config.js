@@ -20,7 +20,6 @@ export default {
     }
   },
   css: [
-    '@/assets/main.css',
     '@/assets/css/tailwind.css'
   ],
   runtimeConfig: {

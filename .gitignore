@@ -39,3 +39,6 @@ backend/GorillacAPI/appsettings.Secrets.json
 # OS/system
 .DS_Store
 Thumbs.db
+
+# SQL Scripts
+databaseSQL.sql

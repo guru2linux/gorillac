@@ -7,16 +7,21 @@ module.exports = {
     './app.vue',
     './nuxt.config.{js,ts}'
   ],
+  safelist: [
+    'bg-brand-gold',
+    'bg-brand-cream',
+    'text-brand-cream',
+    'text-brand-gold',
+    'text-brand-dark',
+    'text-brand-white'
+  ],
   theme: {
     extend: {
       colors: {
-        brand: {
-          dark: '#0C2239',
-          gold: '#D6A540',
-          cream: '#FAF4E8',
-          text: '#1F2D3D',
-          white: '#FFFFFF',
-        }
+        'brand-gold': '#D6A540',
+        'brand-cream': '#FAF4E8',
+        'brand-text': '#1F2D3D',
+        'brand-white': '#FFFFFF',
       }
     },
   },
