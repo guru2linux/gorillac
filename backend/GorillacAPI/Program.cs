@@ -8,7 +8,7 @@ using DotNetEnv;
 var builder = WebApplication.CreateBuilder(args);
 
 // Load .env file if present (for all environments)
-Env.Load();
+Env.Load("/var/www/gorillac/backend/GorillacAPI/published/.env");
 
 // Only load secrets from appsettings.Secrets.json in Development
 if (builder.Environment.IsDevelopment())
@@ -27,44 +27,20 @@ string GetConfig(string key, string? section = null)
     return builder.Configuration[key] ?? string.Empty;
 }
 
-// Always check environment variables for DB credentials, fallback to config files
-string? envConnStr = Environment.GetEnvironmentVariable("DefaultConnection");
-string? envUserId = Environment.GetEnvironmentVariable("UserId");
-string? envPassword = Environment.GetEnvironmentVariable("Password");
+// Use connection string from environment variable
+var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__Default");
 
-string configConnStr = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
-var configSection = builder.Configuration.GetSection("ConnectionStrings");
-string configUserId = configSection["UserId"] ?? string.Empty;
-string configPassword = configSection["Password"] ?? string.Empty;
-
-string baseConnStr = !string.IsNullOrWhiteSpace(envConnStr) ? envConnStr : configConnStr;
-string userId = !string.IsNullOrWhiteSpace(envUserId) ? envUserId : configUserId;
-string password = !string.IsNullOrWhiteSpace(envPassword) ? envPassword : configPassword;
-
-if (string.IsNullOrWhiteSpace(baseConnStr) || string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(password))
+if (string.IsNullOrEmpty(connectionString))
 {
-    Console.WriteLine("[DB CONFIG ERROR] Connection string, UserId, or Password is missing in environment variables and configuration.");
+    Console.WriteLine("[DB CONFIG ERROR] Connection string is missing from environment.");
 }
 else
 {
-    string finalConnStr = baseConnStr.Replace("{UserId}", userId).Replace("{Password}", password);
-    // Register DbContext with the composed connection string
-    builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        options.UseSqlServer(finalConnStr));
-
-    // Test database connection at startup
-    try
-    {
-        using var conn = new SqlConnection(finalConnStr);
-        conn.Open();
-        Console.WriteLine($"[DB TEST] Successfully connected to: {conn.Database} on {conn.DataSource}");
-        conn.Close();
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"[DB TEST ERROR] {ex.Message}");
-    }
+    Console.WriteLine("[DB CONFIG] Loaded connection string from environment.");
 }
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
